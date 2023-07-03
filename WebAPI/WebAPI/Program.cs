@@ -22,6 +22,16 @@ namespace WebAPI
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: "localhost",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000", "https://localhost:3000")
+                              .AllowAnyMethod()
+                              .AllowAnyHeader();
+                    });
+            });
 
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
@@ -33,9 +43,10 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors("localhost");
 
             app.UseHttpsRedirection();
-
+            
             app.UseAuthorization();
 
 
