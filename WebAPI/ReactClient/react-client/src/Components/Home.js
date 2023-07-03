@@ -5,6 +5,7 @@ export function Home(props) {
     const [employees, setEmployees] = useState([{}])
     
     const URI = 'https://localhost:7189/api/employees'
+    let counter = 1;
 
     useEffect(() => {
         axios.get(URI)
@@ -31,7 +32,7 @@ export function Home(props) {
                 <tbody>
                     {employees.map(employee => (
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{counter++}</th>
                             <td>{employee.firstName}</td>
                             <td>{employee.lastName}</td>
                             <td>{employee.phone}</td>
