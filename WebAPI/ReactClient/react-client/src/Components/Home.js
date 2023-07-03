@@ -9,18 +9,16 @@ export function Home(props) {
     useEffect(() => {
         axios.get(URI)
             .then((response) => {
-                setEmployees((previous) => 
-                    [...previous, response.data]
-                )
-
-                // used for debugging
-                employees.map(e => console.log(e))
-                        
+                setEmployees(response.data)
             })
             .catch((err) => console.log(err));
     }, [])
-    return (
-        <section>
+    
+    if(employees.length === 1) {
+        return <div>Loading...</div>
+    } else {
+        return (
+            <section>
             <table className="table">
                 <thead>
                     <tr>
@@ -31,16 +29,17 @@ export function Home(props) {
                     </tr>   
                 </thead>
                 <tbody>
-                    {employees.map(employee => {
+                    {employees.map(employee => (
                         <tr>
                             <th scope="row">1</th>
                             <td>{employee.firstName}</td>
                             <td>{employee.lastName}</td>
                             <td>{employee.phone}</td>
                         </tr> 
-                    })}
+                    ))}
                 </tbody>
             </table>
         </section>
-    )
+        )
+    }
 }
