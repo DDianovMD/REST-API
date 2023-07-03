@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import axios from 'axios'
 
 export function Home(props) {
@@ -20,22 +21,27 @@ export function Home(props) {
     } else {
         return (
             <section>
-            <table className="table">
+            <table className="table table-hover">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">FirstName</th>
-                    <th scope="col">LastName</th>
-                    <th scope="col">Phone</th>
+                        <th scope="col">#</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col"></th>
                     </tr>   
                 </thead>
                 <tbody>
                     {employees.map(employee => (
-                        <tr>
+                        <tr key={employee.id}>
                             <th scope="row">{counter++}</th>
                             <td>{employee.firstName}</td>
                             <td>{employee.lastName}</td>
                             <td>{employee.phone}</td>
+                            <td>
+                                <Link to="/edit" state={{id: employee.id}} className="btn btn-warning" style={{marginRight: '10px'}}>Edit</Link>
+                                <Link to="/delete" className="btn btn-danger">Delete</Link>
+                            </td>
                         </tr> 
                     ))}
                 </tbody>
