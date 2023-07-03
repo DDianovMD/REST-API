@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebAPI.DTOs
+namespace WebAPI.Services.DTOs
 {
     public class EmployeeDTO
     {
+        public string? Id { get; set; }
+
         [Required]
         [MaxLength(30)]
         public string FirstName { get; set; } = null!;

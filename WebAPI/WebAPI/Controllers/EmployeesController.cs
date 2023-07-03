@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebAPI.Data.Models;
-using WebAPI.DTOs;
 using WebAPI.Services.Contracts;
+using WebAPI.Services.DTOs;
 
 namespace WebAPI.Controllers
 {
@@ -29,6 +29,7 @@ namespace WebAPI.Controllers
                 {
                     EmployeeDTO currentEmployee = new EmployeeDTO
                     {
+                        Id = employee.Id,
                         FirstName = employee.FirstName,
                         LastName = employee.LastName,
                         Phone = employee.Phone,
@@ -60,6 +61,7 @@ namespace WebAPI.Controllers
                 {
                     EmployeeDTO employeeDTO = new EmployeeDTO
                     {
+                        Id = employee.Id,
                         FirstName = employee.FirstName,
                         LastName = employee.LastName,
                         Phone = employee.Phone,
@@ -115,11 +117,7 @@ namespace WebAPI.Controllers
                     return NotFound();
                 }
 
-                employee.FirstName = employeeDTO.FirstName;
-                employee.LastName = employeeDTO.LastName;
-                employee.Phone = employeeDTO.Phone;
-
-                await this.employeeService.UpdateAsync(employee);
+                await this.employeeService.UpdateAsync(id, employeeDTO);
 
                 return NoContent();
             }

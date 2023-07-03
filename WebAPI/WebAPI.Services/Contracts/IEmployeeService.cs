@@ -1,4 +1,5 @@
 ﻿using WebAPI.Data.Models;
+using WebAPI.Services.DTOs;
 
 namespace WebAPI.Services.Contracts
 {
@@ -10,7 +11,7 @@ namespace WebAPI.Services.Contracts
 
         public Task<Employee> GetByIdAsync(string id);
 
-        public Task UpdateAsync(Employee updatedEmployee);
+        public Task UpdateAsync(string id, EmployeeDTO updatedEmployee);
 
         public Task DeleteAsync(Employee employee);
 

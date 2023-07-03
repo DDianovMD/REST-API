@@ -2,6 +2,7 @@
 using WebAPI.Data;
 using WebAPI.Data.Models;
 using WebAPI.Services.Contracts;
+using WebAPI.Services.DTOs;
 
 namespace WebAPI.Services
 {
@@ -40,9 +41,15 @@ namespace WebAPI.Services
             return employee;
         }
 
-        public async Task UpdateAsync(Employee updatedEmployee)
+        public async Task UpdateAsync(string id, EmployeeDTO updatedEmployee)
         {
-            this.context.Update<Employee>(updatedEmployee);
+            Employee? employee = await this.context.Employees.FirstOrDefaultAsync(e => e.Id == id);
+
+            employee!.FirstName = updatedEmployee.FirstName;
+            employee.LastName = updatedEmployee.LastName;
+            employee.Phone = updatedEmployee.Phone;
+
+            this.context.Update<Employee>(employee);
             await this.context.SaveChangesAsync();
         }
     }
