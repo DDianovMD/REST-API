@@ -1,12 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { NavBar } from './Components/NavBar';
 import { Home } from './Components/Home.js'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import { NavBar } from './Components/NavBar';
 
 function App() {
 
