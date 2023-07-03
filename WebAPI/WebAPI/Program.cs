@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
+using WebAPI.Services;
+using WebAPI.Services.Contracts;
 
 namespace WebAPI
 {
@@ -20,6 +22,8 @@ namespace WebAPI
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
             var app = builder.Build();
 

@@ -1,4 +1,6 @@
-﻿using WebAPI.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using WebAPI.Data;
+using WebAPI.Data.Models;
 using WebAPI.Services.Contracts;
 
 namespace WebAPI.Services
@@ -12,24 +14,36 @@ namespace WebAPI.Services
             this.context = context;
         }
 
-        public Task DeleteAsync()
+        public async Task AddAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            await this.context.Employees.AddAsync(employee);
+            await this.context.SaveChangesAsync();
         }
 
-        public Task GetByAllAsync()
+        public async Task DeleteAsync(Employee employee)
         {
-            throw new NotImplementedException();
+            this.context.Employees.Remove(employee);
+            await this.context.SaveChangesAsync();
         }
 
-        public Task GetByIdAsync()
+        public async Task<ICollection<Employee>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            Employee[] employees = await this.context.Employees.ToArrayAsync();
+
+            return employees;
         }
 
-        public Task UpdateAsync()
+        public async Task<Employee> GetByIdAsync(string Id)
         {
-            throw new NotImplementedException();
+            Employee? employee = await this.context.Employees.FirstOrDefaultAsync(e => e.Id == Id);
+
+            return employee;
+        }
+
+        public async Task UpdateAsync(Employee updatedEmployee)
+        {
+            this.context.Update<Employee>(updatedEmployee);
+            await this.context.SaveChangesAsync();
         }
     }
 }

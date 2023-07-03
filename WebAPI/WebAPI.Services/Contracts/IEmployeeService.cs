@@ -1,14 +1,18 @@
-﻿namespace WebAPI.Services.Contracts
+﻿using WebAPI.Data.Models;
+
+namespace WebAPI.Services.Contracts
 {
     public interface IEmployeeService
     {
-        public Task GetByAllAsync();
+        public Task AddAsync(Employee employee);
 
-        public Task GetByIdAsync();
+        public Task<ICollection<Employee>> GetAllAsync();
 
-        public Task UpdateAsync();
+        public Task<Employee> GetByIdAsync(string id);
 
-        public Task DeleteAsync();
+        public Task UpdateAsync(Employee updatedEmployee);
+
+        public Task DeleteAsync(Employee employee);
 
     }
 }
