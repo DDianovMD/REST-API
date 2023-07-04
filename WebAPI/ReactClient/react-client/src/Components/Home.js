@@ -40,7 +40,7 @@ export function Home(props) {
                             <td>{employee.phone}</td>
                             <td>
                                 <Link to="/edit" state={{id: employee.id}} className="btn btn-warning" style={{marginRight: '10px'}}>Edit</Link>
-                                <Link to="/delete" className="btn btn-danger">Delete</Link>
+                                <button className="btn btn-danger">Delete</button>
                             </td>
                         </tr> 
                     ))}
