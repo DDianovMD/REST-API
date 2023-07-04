@@ -8,7 +8,10 @@ export function NavBar() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <Link to="/" className="nav-link">All employees</Link>
+                        <Link to="/" className="nav-link">All</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link to="/add" className="nav-link">Add</Link>
                     </li>
                 </ul>
             </div>
